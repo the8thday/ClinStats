@@ -6,7 +6,10 @@
 #' @return string with results
 #' @export
 #'
-#' @examples
+#' @examples mymatrix <- matrix(c(35,82,250,293,196,190,136,71,32,13),nrow=5,byrow=TRUE)
+#' colnames(mymatrix) <- c("Disease","Control")
+#' rownames(mymatrix) <- c("2","9.5","19.5","37","50")
+#' doseOddsDiseaseRegression(mymatrix)
 doseOddsDiseaseRegression <- function(mymatrix, referencerow = 1) {
   numstrata <- nrow(mymatrix)
   # calculate the stratum-specific odds ratios, and odds of disease:

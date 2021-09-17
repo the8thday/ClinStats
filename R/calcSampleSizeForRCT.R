@@ -10,8 +10,8 @@
 #' @export
 #'
 #' @examples calcSampleSizeForRCT(alpha=0.05, gamma=0.80, piT=0.15, piC=0.2)
-#' This tells us that the sample size required in each group is 1214 people,
-#' so overall we need 1214*2=2428 people in the randomised control trial.
+#' #This tells us that the sample size required in each group is 1214 people,
+#' #so overall we need 1214*2=2428 people in the randomised control trial.
 calcSampleSizeForRCT <- function(alpha,gamma,piT,piC,p=0)
 {
   # p is the estimated of the likely fraction of losses to follow-up
@@ -36,12 +36,11 @@ calcSampleSizeForRCT <- function(alpha,gamma,piT,piC,p=0)
 #' @param piC the estimated incidences of the disease in the control
 #' @param n number for each group
 #'
-#' @return
+#' @return string
 #' @export
 #'
 #' @examples
 #' calcPowerForRCT(alpha=0.05, piT=0.2, piC=0.3, n=250)
-#' for total 500 peopel
 calcPowerForRCT <- function(alpha,piT,piC,n)
 {
   qalpha <- qnorm(p=1-(alpha/2))

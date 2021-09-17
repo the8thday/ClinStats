@@ -1,4 +1,6 @@
-#' Title
+#' Calculate Relative Risk
+#'
+#' Calculate RR value in table
 #'
 #' @param mymatrix a two dimension matrix
 #' @param alpha P value
@@ -6,8 +8,10 @@
 #'
 #' @return string with value and ci
 #' @export
+#' @importFrom stats lm pnorm qnorm
 #'
-#' @examples
+#' @examples mymatrix <- matrix(c(156, 9421, 1531, 14797), nrow = 2, byrow = TRUE)
+#' calcRelativeRisk(mymatrix)
 calcRelativeRisk <- function(mymatrix, alpha = 0.05, referencerow = 2) {
   numrow <- nrow(mymatrix)
   myrownames <- rownames(mymatrix)
@@ -55,7 +59,8 @@ calcRelativeRisk <- function(mymatrix, alpha = 0.05, referencerow = 2) {
 #' @return string
 #' @export
 #'
-#' @examples
+#' @examples mymatrix <- matrix(c(156, 9421, 1531, 14797), nrow = 2, byrow = TRUE)
+#' calcOddsRatio(mymatrix, alpha = 0.05, referencerow = 2 )
 calcOddsRatio <- function(mymatrix, alpha = 0.05, referencerow = 2, quiet = FALSE) {
   numrow <- nrow(mymatrix)
   myrownames <- rownames(mymatrix)

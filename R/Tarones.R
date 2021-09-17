@@ -1,5 +1,5 @@
 calcTaronesTest <- function(mylist, referencerow = 2) {
-  require("metafor")
+  requireNamespace("metafor")
   numstrata <- length(mylist)
   # make an array "ntrt" of the number of people in the exposed group, in each stratum
   # make an array "nctrl" of the number of people in the unexposed group, in each stratum
