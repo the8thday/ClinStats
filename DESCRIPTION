@@ -16,3 +16,5 @@ Config/testthat/edition: 3
 Imports: 
     do,
     stats
+URL: https://github.com/the8thday/ClinStats
+BugReports: https://github.com/the8thday/ClinStats/issues
