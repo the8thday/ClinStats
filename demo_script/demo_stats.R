@@ -209,6 +209,21 @@ stats::power.prop.test(
 #   k = 1
 # )
 
+
 # modified poissson for RR ------------------------------------------------
+# log binomial regression 和Poisson regression, 负二项分布
+# Poisson regression
+data(warpbreaks, package = 'datasets')
+poisson.model <- glm(breaks ~ wool + tension,
+    data = warpbreaks,
+    family = poisson(link = "log")
+    )
+summary(poisson.model)
+# modified Poisson regression
+glm()
+# log binomial
+glm(y~x+z,family=binomial(log))
+
+
 
 

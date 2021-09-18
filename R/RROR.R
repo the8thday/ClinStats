@@ -49,7 +49,9 @@ calcRelativeRisk <- function(mymatrix, alpha = 0.05, referencerow = 2) {
 }
 
 
-#' Title
+#' calcOddsRatio
+#'
+#' calcOddsRatio
 #'
 #' @param mymatrix a two dimension matrix
 #' @param alpha P value

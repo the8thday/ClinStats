@@ -1,4 +1,6 @@
-#' Title
+#' calcSampleSizeForRCT
+#'
+#' calcSampleSizeForRCT
 #'
 #' @param alpha the significance level
 #' @param gamma the power that you want
@@ -29,7 +31,9 @@ calcSampleSizeForRCT <- function(alpha,gamma,piT,piC,p=0)
 }
 
 
-#' Title
+#' calcPowerForRCT
+#'
+#' calcPowerForRCT
 #'
 #' @param alpha the significance level
 #' @param piT the estimated incidences of the disease in the disease
