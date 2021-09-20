@@ -40,4 +40,4 @@ calcRelativeRisk(mymatrix)
 calcOddsRatio(mymatrix, alpha = 0.05, referencerow = 2 )
 ```
 
-Note that: Some script come a little [book](https://a-little-book-of-r-for-biomedical-statistics.readthedocs.io/en/latest/)
+*Note that*: Some scripts come from a little [book](https://a-little-book-of-r-for-biomedical-statistics.readthedocs.io/en/latest/)

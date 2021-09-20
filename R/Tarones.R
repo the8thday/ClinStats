@@ -1,5 +1,22 @@
+#' Tarones test for
+#'
+#' @param mylist matrixs Stratified by a Variable
+#' @param referencerow Unexposed row
+#'
+#' @return string
+#' @export
+#'
+#' @examples
+#' mymatrix1 <- matrix(c(4,5,5,103),nrow=2,byrow=TRUE)
+#' colnames(mymatrix1) <- c("Disease","Control")
+#' rownames(mymatrix1) <- c("Exposure","Unexposed")
+#' mymatrix2 <- matrix(c(10,3,5,43),nrow=2,byrow=TRUE)
+#' colnames(mymatrix2) <- c("Disease","Control")
+#' rownames(mymatrix2) <- c("Exposure","Unexposed")
+#' mylist <- list(mymatrix1,mymatrix2)
+#' calcTaronesTest(mylist)
 calcTaronesTest <- function(mylist, referencerow = 2) {
-  requireNamespace("metafor")
+  # requireNamespace("metafor")
   numstrata <- length(mylist)
   # make an array "ntrt" of the number of people in the exposed group, in each stratum
   # make an array "nctrl" of the number of people in the unexposed group, in each stratum
@@ -40,7 +57,7 @@ calcTaronesTest <- function(mylist, referencerow = 2) {
   }
   # calculate Tarone's test of homogeneity, using the rma.mh function from the
   # "metafor" package
-  tarone <- rma.mh(ptrt, htrt, pctrl, hctrl, ntrt, nctrl)
+  tarone <- metafor::rma.mh(ptrt, htrt, pctrl, hctrl, ntrt, nctrl)
   pvalue <- tarone$TAp
   print(paste("Pvalue for Tarone's test =", pvalue))
 }

@@ -34,5 +34,5 @@ calcOddsRatio(mymatrix, alpha = 0.05, referencerow = 2 )
 #> [1] "category =  ,  95 % confidence interval = [ 0.135460641900536 , 0.189077140693912 ]"
 ```
 
-Note that: Some script come a little
+*Note that*: Some scripts come from a little
 [book](https://a-little-book-of-r-for-biomedical-statistics.readthedocs.io/en/latest/)

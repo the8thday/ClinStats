@@ -1,6 +1,9 @@
 library(easystats)
 library(rstatix)
 
+# try to use load_all instead of source
+load_all()
+
 df <- read.csv("~/Downloads/crop.data.csv",
   header = TRUE,
   colClasses = c("factor", "factor", "factor", "numeric")
@@ -92,7 +95,7 @@ colnames(mymatrix2) <- c("Disease", "Control")
 rownames(mymatrix2) <- c("Exposure1", "Exposure2", "Unexposed")
 
 # RR:The relative risk can be estimated for a cohort study but not for a case-control study
-source('./R/RROR.R')
+# source('./R/RROR.R')
 calcRelativeRisk(mymatrix)
 
 epitools::epitab(mymatrix,
@@ -148,14 +151,14 @@ m_dose <- matrix(
   )
 )
 
-source("./R/doseOddsDiseaseRegression.R")
+# source("./R/doseOddsDiseaseRegression.R")
 doseOddsDiseaseRegression(m_dose)
 
 
 
 
 # Calculating the Sample Size Required for a Randomised Control Trial --------
-source(file = "./R/calcSampleSizeForRCT.R")
+# source(file = "./R/calcSampleSizeForRCT.R")
 calcSampleSizeForRCT(alpha = 0.05, gamma = 0.90, piT = 0.15, piC = 0.2)
 
 # This tells us that the sample size required in each group is 1214 people,

@@ -2,7 +2,7 @@
 % Please edit documentation in R/calcSampleSizeForRCT.R
 \name{calcSampleSizeForRCT}
 \alias{calcSampleSizeForRCT}
-\title{Title}
+\title{calcSampleSizeForRCT}
 \usage{
 calcSampleSizeForRCT(alpha, gamma, piT, piC, p = 0)
 }
@@ -15,16 +15,15 @@ calcSampleSizeForRCT(alpha, gamma, piT, piC, p = 0)
 
 \item{piC}{the estimated incidences of the disease in the control}
 
-\item{p}{if we estimate that 10% of the people are likely to be lost to follow-up, then p=0.1}
+\item{p}{lost follow-up ratio}
 }
 \value{
-a string
+string
 }
 \description{
-Title
+calcSampleSizeForRCT
 }
 \examples{
 calcSampleSizeForRCT(alpha=0.05, gamma=0.80, piT=0.15, piC=0.2)
-#This tells us that the sample size required in each group is 1214 people,
-#so overall we need 1214*2=2428 people in the randomised control trial.
+#tatol sample should be doubled
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/RROR.R
 \name{calcOddsRatio}
 \alias{calcOddsRatio}
-\title{Title}
+\title{calcOddsRatio}
 \usage{
 calcOddsRatio(mymatrix, alpha = 0.05, referencerow = 2, quiet = FALSE)
 }
@@ -19,7 +19,7 @@ calcOddsRatio(mymatrix, alpha = 0.05, referencerow = 2, quiet = FALSE)
 string
 }
 \description{
-Title
+calcOddsRatio
 }
 \examples{
 mymatrix <- matrix(c(156, 9421, 1531, 14797), nrow = 2, byrow = TRUE)
