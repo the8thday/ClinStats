@@ -2,20 +2,21 @@
 % Please edit documentation in R/Tarones.R
 \name{calcTaronesTest}
 \alias{calcTaronesTest}
-\title{Tarones test for}
+\alias{Tarones}
+\title{Tarones test for Stratified OR}
 \usage{
 calcTaronesTest(mylist, referencerow = 2)
 }
 \arguments{
-\item{mylist}{matrixs Stratified by a Variable}
+\item{mylist}{A list of matrix Stratified by a Variable}
 
 \item{referencerow}{Unexposed row}
 }
 \value{
-string
+string with results
 }
 \description{
-Tarones test for
+\code{calcTaronesTest} is ued to test whether the OR in different strata are different
 }
 \examples{
 mymatrix1 <- matrix(c(4,5,5,103),nrow=2,byrow=TRUE)
@@ -26,4 +27,7 @@ colnames(mymatrix2) <- c("Disease","Control")
 rownames(mymatrix2) <- c("Exposure","Unexposed")
 mylist <- list(mymatrix1,mymatrix2)
 calcTaronesTest(mylist)
+\dontrun{
+calcTaronesTest(mymatrix1)
+}
 }

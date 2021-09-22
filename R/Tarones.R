@@ -1,11 +1,14 @@
-#' Tarones test for
+#' Tarones test for Stratified OR
 #'
-#' @param mylist matrixs Stratified by a Variable
+#' \code{calcTaronesTest} is ued to test whether the OR in different strata are different
+#'
+#' @param mylist A list of matrix Stratified by a Variable
 #' @param referencerow Unexposed row
 #'
-#' @return string
+#' @return string with results
 #' @export
 #'
+#' @aliases Tarones
 #' @examples
 #' mymatrix1 <- matrix(c(4,5,5,103),nrow=2,byrow=TRUE)
 #' colnames(mymatrix1) <- c("Disease","Control")
@@ -15,6 +18,9 @@
 #' rownames(mymatrix2) <- c("Exposure","Unexposed")
 #' mylist <- list(mymatrix1,mymatrix2)
 #' calcTaronesTest(mylist)
+#' \dontrun{
+#' calcTaronesTest(mymatrix1)
+#' }
 calcTaronesTest <- function(mylist, referencerow = 2) {
   # requireNamespace("metafor")
   numstrata <- length(mylist)
