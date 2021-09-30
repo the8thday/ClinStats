@@ -20,8 +20,12 @@ ci_mean <- function(x){
 }
 
 
-ci_portation <-  function(x){
-  DescTools::BinomCI()
+ci_portation <-  function(x, n=NULL){
+  if(is.null(n)){
+    DescTools::MultinomCI(x)
+  } else{
+    DescTools::BinomCI(x, n)
+  }
 }
 
 

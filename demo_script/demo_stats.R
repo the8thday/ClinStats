@@ -222,10 +222,37 @@ poisson.model <- glm(breaks ~ wool + tension,
     family = poisson(link = "log")
     )
 summary(poisson.model)
+lmtest::coeftest(glm.log.poisson, vcov = sandwich::sandwich)
+exp(coef(glm.log.poisson))
+
 # modified Poisson regression
-glm()
+geeglm.log.poisson <- geepack::geeglm(formula = recex_dich ~ ageyrs + smokever + sex + race,
+                             data    = restricted2,
+                             family  = poisson(link = "log"),
+                             id      = seqno,
+                             corstr  = "exchangeable")
+summary(geeglm.log.poisson)
+exp(coef(geeglm.log.poisson))
+
+
 # log binomial
-glm(y~x+z,family=binomial(log))
+log_bin <- glm(breaks ~ wool + tension,
+    data = warpbreaks,
+    family=binomial(log))
+
+logbin::logbin()
+
+
+# 线性混合模型 ------------------------------------------------------------------
+
+library(lme4)
+model_lmer <- lme4::lmer(mpg ~ drat * wt + (1|cyl),
+                         data=mtcars
+                         )
+
+model_gam <- gamm4::gamm4(mpg ~ drat + wt + s(qsec),
+                          data=mtcars
+                          )
 
 
 
