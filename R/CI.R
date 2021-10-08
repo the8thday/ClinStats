@@ -20,7 +20,7 @@ ci_mean <- function(x){
 }
 
 
-ci_portation <-  function(x, n=NULL){
+ci_proportion <-  function(x, n=NULL){
   if(is.null(n)){
     DescTools::MultinomCI(x)
   } else{
@@ -28,5 +28,7 @@ ci_portation <-  function(x, n=NULL){
   }
 }
 
+
+ci_diff_proportion <- function(){}
 
 

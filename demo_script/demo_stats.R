@@ -249,6 +249,7 @@ library(lme4)
 model_lmer <- lme4::lmer(mpg ~ drat * wt + (1|cyl),
                          data=mtcars
                          )
+performance::check_model(model_lmer)
 
 model_gam <- gamm4::gamm4(mpg ~ drat + wt + s(qsec),
                           data=mtcars
