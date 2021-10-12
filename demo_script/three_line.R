@@ -128,3 +128,8 @@ datasummary(
 
 
 # use gtsummary -----------------------------------------------------------
+
+# by crosstable -----------------------------------------------------------
+
+library(crosstable)
+library(flextable)
