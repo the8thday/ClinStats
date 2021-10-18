@@ -4,6 +4,11 @@ ci_median <- function(x){
   if(!is.vector(x)){
     stop('only one dim vector surported!')
   }
+
+  if(!'DescTools' %in% .packages()){
+    loadNamespace('DescTools')
+  }
+
   value <- DescTools::MedianCI(x)
   as.data.frame(value) %>% t() %>%
     tibble::as_tibble()
@@ -33,6 +38,8 @@ ci_diff_proportion <- function(x1, n1, x2, n2, conf.level = 0.95,
                                sides = c("two.sided","left","right"),
                                method = c("ac", "wald", "waldcc", "score", "scorecc", "mn",
                                           "mee", "blj", "ha", "hal", "jp")){
+  stopifnot(){}
+
   DescTools::BinomDiffCI(x1,n1,x2,n2)
 }
 

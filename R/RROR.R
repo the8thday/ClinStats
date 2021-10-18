@@ -13,6 +13,8 @@
 #' @examples mymatrix <- matrix(c(156, 9421, 1531, 14797), nrow = 2, byrow = TRUE)
 #' calcRelativeRisk(mymatrix)
 calcRelativeRisk <- function(mymatrix, alpha = 0.05, referencerow = 2) {
+  stopifnot(is.matrix(mymatrix) | is.data.frame(mymatrix))
+
   numrow <- nrow(mymatrix)
   myrownames <- rownames(mymatrix)
   for (i in 1:numrow)
@@ -64,6 +66,8 @@ calcRelativeRisk <- function(mymatrix, alpha = 0.05, referencerow = 2) {
 #' @examples mymatrix <- matrix(c(156, 9421, 1531, 14797), nrow = 2, byrow = TRUE)
 #' calcOddsRatio(mymatrix, alpha = 0.05, referencerow = 2 )
 calcOddsRatio <- function(mymatrix, alpha = 0.05, referencerow = 2, quiet = FALSE) {
+  stopifnot(is.matrix(mymatrix) | is.data.frame(mymatrix))
+
   numrow <- nrow(mymatrix)
   myrownames <- rownames(mymatrix)
 
