@@ -1,5 +1,14 @@
 # CI value for different hypo test
 
+#' Title
+#'
+#' @param x
+#'
+#' @return a tibble
+#' @export
+#'
+#' @examples
+#' ci_median(c(3,4,5,6,7,8))
 ci_median <- function(x){
   if(!is.vector(x)){
     stop('only one dim vector surported!')
@@ -38,7 +47,8 @@ ci_diff_proportion <- function(x1, n1, x2, n2, conf.level = 0.95,
                                sides = c("two.sided","left","right"),
                                method = c("ac", "wald", "waldcc", "score", "scorecc", "mn",
                                           "mee", "blj", "ha", "hal", "jp")){
-  stopifnot(){}
+  stopifnot(is.integer(x1)&is.integer()){}
+  method <- match.arg()
 
   DescTools::BinomDiffCI(x1,n1,x2,n2)
 }
