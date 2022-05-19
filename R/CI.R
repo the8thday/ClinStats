@@ -1,16 +1,15 @@
-# CI value for different hypo test
-
-#' Title
+#' calculate median CI for single vector
 #'
-#' @param x
+#' @param x numberic vector
+#' @inheritParams DescTools::MedianCI
 #'
 #' @return a tibble
 #' @export
+#' @importFrom magrittr %>%
 #'
 #' @examples
-#' @importFrom magrittr %>%
-#' ci_median(c(3,4,5,6,7,8))
-ci_median <- function(x){
+#' ci_median(c(1,2,3,4,5))
+ci_median <- function(x, conf.level = 0.95){
   if(!is.vector(x)){
     stop('only one dim vector surported!')
   }
@@ -19,32 +18,36 @@ ci_median <- function(x){
     loadNamespace('DescTools')
   }
 
-  value <- DescTools::MedianCI(x)
+  value <- DescTools::MedianCI(x,
+                               conf.level=conf.level)
   as.data.frame(value) %>% t() %>%
     tibble::as_tibble()
   }
+
 
 
 #' calculate mean CI for single vector
 #'
 #' @param x numeric vector
 #'
-#' @return mean CI tibble
+#' @return mean CI tibble, same as t.test
 #' @export
 #'
 #' @examples
 #' ci_mean(mtcars$mpg)
-ci_mean <- function(x){
+ci_mean <- function(x, conf.level = 0.95){
   if(!is.numeric(x)){
     stop('only one dim vector surported!')
   }
-  value <- DescTools::MeanCI(x)
+  value <- DescTools::MeanCI(x,
+                             conf.level = conf.level)
   as.data.frame(value) %>% t() %>%
     tibble::as_tibble()
 }
 
 
-#' Title
+
+#' calculate ci for proportion
 #'
 #' @param x vector of positive integers representing the number of occurrences of each class, or number of
 #' successes(n is needed)
@@ -57,13 +60,14 @@ ci_mean <- function(x){
 #' @examples
 #' ci_proportion(c(2,3,4))
 #' ci_proportion(x = 37, n = 43)
-ci_proportion <-  function(x, n=NULL){
+ci_proportion <-  function(x, n=NULL, conf.level = 0.95){
   if(is.null(n)){
-    DescTools::MultinomCI(x)
+    DescTools::MultinomCI(x, conf.level = conf.level)
   } else{
-    DescTools::BinomCI(x, n)
+    DescTools::BinomCI(x, n, conf.level = conf.level)
   }
 }
+
 
 
 #' Title
@@ -100,36 +104,93 @@ ci_diff_proportion <- function(x1, n1, x2, n2, conf.level = 0.95,
 
 
 
-ci_diff_mean <- function(x, y, var.equal=FALSE,
+#' Confidence interval for a difference in means
+#'
+#' @param x numbers in sample1
+#' @param y numbers in sample2
+#' @param var.equal TRUE or FALSE
+#' @param conf.level confidence level of the returned confidence interval
+#' @param methods 't.test', 'pairwiseCI'
+#'
+#' @return a matrix
+#' @export
+#'
+#' @examples
+#' ci_diff_mean(x = c(1,2,3), y = c(3,4,5), methods = 't.test')
+ci_diff_mean <- function(x, y, var.equal=FALSE,conf.level = 0.95,
                          methods = c('t.test', 'pairwiseCI')
                          ){
-  res <- t.test(x, y,
-                alternative = 'two.sided',
-                onf.level = 0.95,
-                var.equal=var.equal
-                )
-  res$conf.int
+  if(methods == 't.test'){
+    res <- t.test(x, y,
+                  alternative = 'two.sided',
+                  conf.level = conf.level,
+                  var.equal=var.equal
+    )
+    return(res$conf.int)
+  } else {
+    res <- pairwiseCI::pairwiseCI(method = "Param.diff",
+                                  var.equal=var.equal
+                                  )
+    return(res)
+  }
+
 }
 
 
 
+#' Confidence interval for a difference in median
+#'
+#' @param formula A formula of the structure response ~ treatment for numerical variables
+#' @param data A data.frame containing the numerical response variable and the treatment and by variable as factors
+#' @param alternative Character string, either "two.sided", "less" or "greater"
+#' @param conf.level The comparisonwise confidence level of the intervals
+#'
+#' @return a matrix
+#' @export
+#'
+#' @examples
+#' df <- data.frame(group = rep(c('a', 'b'),5), value = sample(1:10, 10))
+#' ci_diff_median(value ~ group, data = df)
 ci_diff_median <- function(formula, data,
                            alternative = "two.sided",
                            conf.level = 0.95
                            ){
-  pairwiseCI::pairwiseCI(method = 'Median.diff')
+  vv <- pairwiseCI::pairwiseCI(formula = formula,
+                         data = data,
+                         method = 'Median.diff',
+                         alternative = alternative,
+                         conf.level = conf.level
+                         )
+  vv
 }
 
 
-ci_proportion_ratio <- function(){
-  pairwiseCI::pairwiseCI(method = 'Prop.ratio')
-}
+
+#' Confidence interval for a ratio in proportion
+#'
+#' @param formula A formula of the structure response ~ treatment for numerical variables
+#' @param data A data.frame containing the numerical response variable and the treatment and by variable as factors
+#' @param alternative Character string, either "two.sided", "less" or "greater"
+#' @param conf.level The comparisonwise confidence level of the intervals
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#' df <- data.frame(group = rep(c('a', 'b'),5), success = sample(1:10, 10), failure = sample(1:10, 10))
+#' ci_proportion_ratio(cbind(success, failure) ~ group,data = df)
+ci_proportion_ratio <- function(formula, data,
+                                alternative = "two.sided",
+                                conf.level = 0.95
+                                ){
+  pairwiseCI::pairwiseCI(formula = formula,
+                         data = data,
+                         method = 'Prop.ratio',
+                         alternative = alternative,
+                         conf.level = conf.level
+                         )}
 
 
-ci_mean_ratio <- function(){}
-
-
-ci_media_ration <- function(){}
 
 
 
