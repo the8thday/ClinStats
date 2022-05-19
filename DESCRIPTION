@@ -1,11 +1,13 @@
 Package: ClinStats
 Type: Package
-Title: Caculate some index for clinical research
+Title: Statistic tools for clinical research as SPSS
 Version: 0.1.0
 Author: person(given = 'Cong', family = 'Liu', email = 'dibatian@live.com', role = c('aut', 'cre'))
 Maintainer: Cong Liu <dibatian@live.com>
 Description: ClinStats package aims to calculate some clinical index in a very easy and robust
-    way,such as OR value, RR value, sample size for a RCT and on...
+    way,such as OR value, RR value, sample size for a RCT and on. And also we want to provide an easy way for
+    one-step statistic as SPSS, user only need input their data and what they aim to do, ClinStats will produce
+    a comprehensive results.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -18,7 +20,8 @@ Config/testthat/edition: 3
 Imports: 
     metafor,
     do,
-    stats
+    stats,
+    magrittr
 URL: https://github.com/the8thday/ClinStats
 BugReports: https://github.com/the8thday/ClinStats/issues
 VignetteBuilder: knitr
