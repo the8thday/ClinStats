@@ -53,7 +53,7 @@ ci_mean <- function(x, conf.level = 0.95){
 #' successes(n is needed)
 #' @param n number of trials.
 #'
-#' @return A vector with 3 elements for estimate, lower confidence intervall and upper for the upper one.
+#' @return A vector with 3 elements for estimate, lower confidence interval and upper for the upper one.
 
 #' @export
 #'
@@ -83,6 +83,9 @@ ci_proportion <-  function(x, n=NULL, conf.level = 0.95){
 #'
 #' @return A matrix with 3 columns containing the estimate, the lower and the upper confidence intervall.
 #' @export
+#'
+#' @import boot
+#' @import class
 #'
 #' @examples
 #' ci_diff_proportion(x1=56, n1=70, x2=48, n2=80)
@@ -129,69 +132,15 @@ ci_diff_mean <- function(x, y, var.equal=FALSE,conf.level = 0.95,
     return(res$conf.int)
   } else {
     res <- pairwiseCI::pairwiseCI(method = "Param.diff",
-                                  var.equal=var.equal
+                                  formula = formula,
+                                  data = data,
+                                  var.equal=var.equal,
+                                  conf.level = conf.level
                                   )
     return(res)
   }
 
 }
-
-
-
-#' Confidence interval for a difference in median
-#'
-#' @param formula A formula of the structure response ~ treatment for numerical variables
-#' @param data A data.frame containing the numerical response variable and the treatment and by variable as factors
-#' @param alternative Character string, either "two.sided", "less" or "greater"
-#' @param conf.level The comparisonwise confidence level of the intervals
-#'
-#' @return a matrix
-#' @export
-#'
-#' @examples
-#' df <- data.frame(group = rep(c('a', 'b'),5), value = sample(1:10, 10))
-#' ci_diff_median(value ~ group, data = df)
-ci_diff_median <- function(formula, data,
-                           alternative = "two.sided",
-                           conf.level = 0.95
-                           ){
-  vv <- pairwiseCI::pairwiseCI(formula = formula,
-                         data = data,
-                         method = 'Median.diff',
-                         alternative = alternative,
-                         conf.level = conf.level
-                         )
-  vv
-}
-
-
-
-#' Confidence interval for a ratio in proportion
-#'
-#' @param formula A formula of the structure response ~ treatment for numerical variables
-#' @param data A data.frame containing the numerical response variable and the treatment and by variable as factors
-#' @param alternative Character string, either "two.sided", "less" or "greater"
-#' @param conf.level The comparisonwise confidence level of the intervals
-#'
-#' @return
-#' @export
-#'
-#' @examples
-#' df <- data.frame(group = rep(c('a', 'b'),5), success = sample(1:10, 10), failure = sample(1:10, 10))
-#' ci_proportion_ratio(cbind(success, failure) ~ group,data = df)
-ci_proportion_ratio <- function(formula, data,
-                                alternative = "two.sided",
-                                conf.level = 0.95
-                                ){
-  pairwiseCI::pairwiseCI(formula = formula,
-                         data = data,
-                         method = 'Prop.ratio',
-                         alternative = alternative,
-                         conf.level = conf.level
-                         )}
-
-
-
 
 
 
