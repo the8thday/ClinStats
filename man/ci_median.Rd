@@ -8,6 +8,9 @@ ci_median(x, conf.level = 0.95)
 }
 \arguments{
 \item{x}{numberic vector}
+
+\item{conf.level}{confidence level of the interval
+}
 }
 \value{
 a tibble

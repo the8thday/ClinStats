@@ -13,7 +13,7 @@ successes(n is needed)}
 \item{n}{number of trials.}
 }
 \value{
-A vector with 3 elements for estimate, lower confidence intervall and upper for the upper one.
+A vector with 3 elements for estimate, lower confidence interval and upper for the upper one.
 }
 \description{
 calculate ci for proportion
