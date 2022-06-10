@@ -8,6 +8,8 @@ ci_mean(x, conf.level = 0.95)
 }
 \arguments{
 \item{x}{numeric vector}
+
+\item{conf.level}{confidence level, defaults to 0.95.}
 }
 \value{
 mean CI tibble, same as t.test

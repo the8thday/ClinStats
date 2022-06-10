@@ -11,6 +11,8 @@ ci_proportion(x, n = NULL, conf.level = 0.95)
 successes(n is needed)}
 
 \item{n}{number of trials.}
+
+\item{conf.level}{confidence level, defaults to 0.95.}
 }
 \value{
 A vector with 3 elements for estimate, lower confidence interval and upper for the upper one.
